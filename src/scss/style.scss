@@ -1,0 +1,39 @@
+@import 'functions/alert-color';
+
+$color-brand: #4990E2;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  flex-wrap: column;
+}
+
+.section {
+  background-color: salmon;
+  flex-grow: 1;
+}
+
+.section--brand {
+  background-color: $color-brand;
+}
+
+.section--warning {
+  background-color: alert-color('warning', $color-brand);
+}
+
+.section--error {
+  background-color: alert-color('error', $color-brand);
+}
+
+.section--success {
+  background-color: alert-color('success', $color-brand);
+}

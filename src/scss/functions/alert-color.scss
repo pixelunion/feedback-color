@@ -1,0 +1,59 @@
+@function alert-color($type, $brand-color) {
+
+  // Fill up some objects with out bounds
+  $error: (
+    hue: (
+      start: 340,
+      end: 15
+    ),
+    sat: (
+      start: 70,
+      end: 90
+    ),
+    light: (
+      start: 80,
+      end: 100
+    )
+  );
+
+  $warning: (
+    hue: (
+      start: 45,
+      end: 55
+    ),
+    sat: (
+      start: 70,
+      end: 90
+    ),
+    light: (
+      start: 90,
+      end: 100
+    )
+  );
+
+  $success: (
+    hue: (
+      start: 75,
+      end: 155
+    ),
+    sat: (
+      start: 60,
+      end: 80
+    ),
+    light: (
+      start: 70,
+      end: 85
+    )
+  );
+
+
+
+  // Get the distances between our bounds
+
+
+
+  // Check if our $brand-color falls inside the bounds of each (hue, sat, light)
+
+
+  @return $brand-color;
+}

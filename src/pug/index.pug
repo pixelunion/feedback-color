@@ -1,0 +1,5 @@
+extends partials/base
+
+block content
+  each type in ['brand', 'warning', 'error', 'success']
+    section(class="section section--" + type)
