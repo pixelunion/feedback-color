@@ -68,7 +68,7 @@ $success: (
 ** on a linear range.
 */
 @function absoluteEnd($start, $end) {
-  @if $end > $start {
+  @if $start > $end {
     @return $end + 360;
   } @else {
     @return $end;
