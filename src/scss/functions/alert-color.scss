@@ -61,6 +61,33 @@ $success: (
   }
 }
 
+/*
+**
+** Function returning an end value that will always be
+** higher than the start value, so that we can modulate
+** on a linear range.
+*/
+@function absoluteEnd($start, $end) {
+  @if $end > $start {
+    @return $end + 360;
+  } @else {
+    @return $end;
+  }
+}
+
+/*
+**
+** Function returning a value that will always be
+** between 0 and 360 so that we can plot a point on
+** the color wheel.
+*/
+@function degValue($val) {
+  @if $val > 360 {
+    @return $val - 360;
+  } @else {
+    @return $val;
+  }
+}
 
 /*
 **
