@@ -47,20 +47,6 @@ $success: (
   )
 );
 
-
-/*
-**
-**  Function to figure out if our value falls
-**  between our bounds
-*/
-@function isBetween($val, $start, $end) {
-  @if $val {
-    @return true;
-  } @else {
-    @return false;
-  }
-}
-
 /*
 **
 ** Function returning an end value that will always be
@@ -86,6 +72,26 @@ $success: (
     @return $val - 360;
   } @else {
     @return $val;
+  }
+}
+
+/*
+**
+**  Function to figure out if our value falls
+**  between our bounds
+*/
+@function isBetween($val, $start, $end) {
+  $absoluteEnd: absoluteEnd($start, $end);
+  $absoluteVal: $val;
+
+  @if $absoluteEnd > 360 and $val < $start {
+    $absoluteVal: $val + 360;
+  }
+
+  @if $absoluteVal > $start and $absoluteVal < $absoluteEnd {
+    @return true;
+  } @else {
+    @return false;
   }
 }
 
