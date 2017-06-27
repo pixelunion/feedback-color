@@ -2,49 +2,23 @@
 **
 **  Set up some objects containing our bounds
 */
+
 $warning: (
-  hue: (
-    start: 45,
-    end: 55
-  ),
-  sat: (
-    start: 70,
-    end: 90
-  ),
-  light: (
-    start: 90,
-    end: 100
-  )
+  hue: (45, 55),
+  sat: (70, 90),
+  light: (90, 100)
 );
 
 $error: (
-  hue: (
-    start: 340,
-    end: 15
-  ),
-  sat: (
-    start: 70,
-    end: 90
-  ),
-  light: (
-    start: 80,
-    end: 100
-  )
+  hue: (340, 15),
+  sat: (70, 90),
+  light: (80, 100)
 );
 
 $success: (
-  hue: (
-    start: 75,
-    end: 155
-  ),
-  sat: (
-    start: 60,
-    end: 80
-  ),
-  light: (
-    start: 70,
-    end: 85
-  )
+  hue: (75, 155),
+  sat: (60, 80),
+  light: (70, 85)
 );
 
 /*
@@ -75,6 +49,16 @@ $success: (
   }
 }
 
+
+@function absoluteEnd($start, $end) {
+  @if $start > $end {
+    @return $end + 360;
+  } @else {
+    @return $end;
+  }
+}
+
+
 /*
 **
 **  Function to figure out if our value falls
@@ -101,15 +85,32 @@ $success: (
 */
 @function alert-color($type, $brand-color) {
 
-  $hue = hue($brand-color);
-  $sat = saturation($brand-color);
-  $light = lightness($brand-color);
-
-  // Figure out what what type of alert we're dealing with
+  $color-values: (
+    hue: hue($brand-color),
+    sat: saturation($brand-color),
+    light: lightness($brand-color)
+  );
 
   // Should eventually be able to loop through this rather than manually
   // creating if statement, but this should suffice for now
   @if $type == 'warning' {
+    // Loop over the map, checking each pair to see if our val falls inside
+    @each $key, $val in $warning {
+      @debug 'our colour value: ' + map-get($color-values, $key);
+      @debug 'key: ' + $key;
+      @debug 'val: ' + $val;
+      @if isBetween( map-get($color-values, $key), nth($val, 1), nth($val, 2) ) {
+      // @if isBetween( 10, 340, 20 ) {
+        @warn 'IS IN BOUNDS';
+        // @return 'blue';
+      } @else {
+        @warn 'IS NOT IN BOUNDS';
+      }
+    }
+
+
+
+
     @return yellow;
   } @elseif $type == 'error' {
     @return red;
