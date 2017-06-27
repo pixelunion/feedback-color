@@ -68,6 +68,10 @@ $success: (
 */
 @function alert-color($type, $brand-color) {
 
+  $hue = hue($brand-color);
+  $sat = saturation($brand-color);
+  $light = lightness($brand-color);
+
   // Figure out what what type of alert we're dealing with
 
   // Should eventually be able to loop through this rather than manually
