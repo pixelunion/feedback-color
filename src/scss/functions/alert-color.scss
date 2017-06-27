@@ -1,59 +1,83 @@
+/*
+**
+**  Set up some objects containing our bounds
+*/
+$warning: (
+  hue: (
+    start: 45,
+    end: 55
+  ),
+  sat: (
+    start: 70,
+    end: 90
+  ),
+  light: (
+    start: 90,
+    end: 100
+  )
+);
+
+$error: (
+  hue: (
+    start: 340,
+    end: 15
+  ),
+  sat: (
+    start: 70,
+    end: 90
+  ),
+  light: (
+    start: 80,
+    end: 100
+  )
+);
+
+$success: (
+  hue: (
+    start: 75,
+    end: 155
+  ),
+  sat: (
+    start: 60,
+    end: 80
+  ),
+  light: (
+    start: 70,
+    end: 85
+  )
+);
+
+
+/*
+**
+**  Function to figure out if our value falls
+**  between our bounds
+*/
+@function isBetween($val, $start, $end) {
+  @if $val {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+
+/*
+**
+**  The main function that will be used by the developer
+*/
 @function alert-color($type, $brand-color) {
 
-  // Fill up some objects with out bounds
-  $error: (
-    hue: (
-      start: 340,
-      end: 15
-    ),
-    sat: (
-      start: 70,
-      end: 90
-    ),
-    light: (
-      start: 80,
-      end: 100
-    )
-  );
+  // Figure out what what type of alert we're dealing with
 
-  $warning: (
-    hue: (
-      start: 45,
-      end: 55
-    ),
-    sat: (
-      start: 70,
-      end: 90
-    ),
-    light: (
-      start: 90,
-      end: 100
-    )
-  );
+  // Should eventually be able to loop through this rather than manually
+  // creating if statement, but this should suffice for now
+  @if $type == 'warning' {
+    @return yellow;
+  } @elseif $type == 'error' {
+    @return red;
+  } @elseif $type == 'success' {
+    @return green;
+  }
 
-  $success: (
-    hue: (
-      start: 75,
-      end: 155
-    ),
-    sat: (
-      start: 60,
-      end: 80
-    ),
-    light: (
-      start: 70,
-      end: 85
-    )
-  );
-
-
-
-  // Get the distances between our bounds
-
-
-
-  // Check if our $brand-color falls inside the bounds of each (hue, sat, light)
-
-
-  @return $brand-color;
 }
