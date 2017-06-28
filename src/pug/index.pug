@@ -1,5 +1,8 @@
 extends partials/base
 
 block content
-  each type in ['brand', 'warning', 'error', 'success']
-    section(class="section section--" + type)
+  each color, index in colors
+    section(class="section section--" + index)
+      each type in ['brand', 'warning', 'error', 'success']
+        div(class="swatch swatch--" + type)
+          div.space

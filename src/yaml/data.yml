@@ -1,3 +1,15 @@
 site:
   title: Alert Colors
   version: 0.0.1
+
+colors:
+  - '#32656A'
+  - '#E82A21'
+  - '#1379DB'
+  - '#9E7849'
+  - '#36818D'
+  - '#657462'
+  - '#F5C3B3'
+  - '#D3D9D9'
+  - '#D8D4E8'
+  - '#7AEBCE'
