@@ -5,18 +5,18 @@
 $feedback-types: (
   warning: (
     hue: (45, 55),
-    sat: (70, 90),
-    light: (90, 100)
+    sat: (75, 100),
+    light: (55, 60)
   ),
   error: (
     hue: (340, 15),
-    sat: (70, 90),
-    light: (80, 100)
+    sat: (65, 90),
+    light: (50, 55)
   ),
   success: (
     hue: (75, 155),
-    sat: (60, 80),
-    light: (70, 85)
+    sat: (40, 65),
+    light: (45, 50)
   )
 );
 
