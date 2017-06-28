@@ -1,0 +1,38 @@
+@import 'true';
+@import '../src/scss/functions/alert-color';
+
+@include describe('feedback-types [map]') {
+  $types: ('hue', 'sat', 'light');
+  @each $type in $types {
+    @include it('Should all have a #{$type} map') {
+      @each $kind, $data in $feedback-types {
+        @include assert-true( map-has-key($data, $type) );
+      }
+    }
+  }
+}
+
+@include describe('is-between [function]') {
+  @include it('Should return true if value is between start and end') {
+    @include assert-false( is-between(1, 2, 3) );
+    @include assert-false( is-between(30, 340, 20) );
+    @include assert-true( is-between(10, 340, 20) );
+    @include assert-true( is-between(3, 2, 4) );
+  }
+}
+
+@include describe('alert-color [function]') {
+  @include it('Should return a valid Sass color') {
+    @include assert-equal( type-of(alert-color(red)), color );
+    @include assert-equal( type-of(alert-color(#0000ff)), color );
+  }
+}
+
+@include describe('deg-value [function]') {
+  @include it('Should return a value between 0 and 360') {
+    $numbers-to-try: (5, 50, 100, 500);
+    @each $number in $numbers-to-try {
+      @include assert-true( deg-value($number) > 0 and deg-value($number) < 360 );
+    }
+  }
+}
