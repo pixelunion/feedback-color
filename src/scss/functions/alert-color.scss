@@ -1,6 +1,6 @@
 /*
 **
-** Set up objects containing our bounds
+** Set up map that contains our bounds
 */
 $feedback-types: (
   warning: (
@@ -27,7 +27,7 @@ $feedback-types: (
 ** higher than the start value, so that we can modulate
 ** on a linear range.
 */
-@function absoluteEnd($start, $end) {
+@function absolute-end($start, $end) {
   @if $start > $end {
     @return $end + 360;
   } @else {
@@ -41,7 +41,7 @@ $feedback-types: (
 ** between 0 and 360 so that we can plot a point on
 ** the color wheel.
 */
-@function degValue($val) {
+@function deg-value($val) {
   @if $val > 360 {
     @return $val - 360;
   } @else {
@@ -51,30 +51,18 @@ $feedback-types: (
 
 /*
 **
-** Function to create an endpoint larger than the start point if necessary
-*/
-@function absoluteEnd($start, $end) {
-  @if $start > $end {
-    @return $end + 360;
-  } @else {
-    @return $end;
-  }
-}
-
-/*
-**
 ** Function to figure out if our value falls
 ** between our bounds
 */
-@function isBetween($val, $start, $end) {
-  $absoluteEnd: absoluteEnd($start, $end);
-  $absoluteVal: $val;
+@function is-between($val, $start, $end) {
+  $absolute-end: absolute-end($start, $end);
+  $absolute-val: $val;
 
-  @if $absoluteEnd > 360 and $val < $start {
-    $absoluteVal: $val + 360;
+  @if $absolute-end > 360 and $val < $start {
+    $absolute-val: $val + 360;
   }
 
-  @if $absoluteVal > $start and $absoluteVal < $absoluteEnd {
+  @if $absolute-val > $start and $absolute-val < $absolute-end {
     @return true;
   } @else {
     @return false;
@@ -85,7 +73,7 @@ $feedback-types: (
 **
 ** Function that modifies color values to match base color
 */
-@function theFunctionThatReturnsNicerValue($type, $value, $range) {
+@function the-function-that-returns-nicer-value($type, $value, $range) {
   @return $value;
 }
 
@@ -123,7 +111,7 @@ $feedback-types: (
 
         // If the value falls within our desired range
         // we merge the existing value
-        @if isBetween( $value, $start, $end ) {
+        @if is-between( $value, $start, $end ) {
           $color-feedback: map-merge($color-feedback, (
             $type: map-get($color-values, $type)
           ));
@@ -132,7 +120,7 @@ $feedback-types: (
         // to modify the value before merging it
         } @else {
           $color-feedback: map-merge($color-feedback, (
-            $type: theFunctionThatReturnsNicerValue($type, $value, $range)
+            $type: the-function-that-returns-nicer-value($type, $value, $range)
           ));  
         }
         
