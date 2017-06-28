@@ -71,7 +71,31 @@ $feedback-types: (
 
 /*
 **
-** Function that modifies color values to match base color
+** Translate a number on a scale to its point between two values on a different scale
+*/
+@function modulateValue($val, $toRange, $type) {
+  $fromRange: (0,100);
+  @if $type == 'hue' { $fromRange: (0, 360); }
+
+  $fromLow: nth($fromRange, 1);
+  $fromHigh: nth($fromRange, 2);
+  $toLow: nth($toRange, 1);
+  $toHigh: nth($toRange, 2);
+  $result: $toLow + ((($val - $fromLow) / ($fromHigh - $fromLow)) * ($toHigh - $toLow));
+
+  @debug
+  '\A\A' +
+  'val:    ' + $val + '\A' +
+  'from:   ' + $fromRange + '\A' +
+  'to:     ' + $toRange + '\A' +
+  'result: ' + $result + '\A' +
+  '\A';
+  @return $result;
+}
+
+/*
+**
+**  The main function that will be used by the developer
 */
 @function the-function-that-returns-nicer-value($type, $value, $range) {
   @return $value;
@@ -82,10 +106,10 @@ $feedback-types: (
 ** Function that will be used by the developer
 */
 @function alert-color($base-color, $feedback-type: 'warning') {
-  
+
   // Check we have a valid $feedback-type or throw an error
   @if $feedback-type != 'error' and
-      $feedback-type != 'success' and 
+      $feedback-type != 'success' and
       $feedback-type != 'warning' {
     @error "Second argument must be 'error', 'warning', or 'success'";
   }
@@ -96,7 +120,7 @@ $feedback-types: (
     sat: saturation($base-color),
     light: lightness($base-color)
   );
-  
+
   // We'll merge in key/value pairs as we loop through hue/sat/light
   // and the values from $color-feedback is what we return at the end
   $color-feedback: ();
@@ -104,7 +128,7 @@ $feedback-types: (
   @each $kind, $data in $feedback-types {
     @if $kind == $feedback-type {
       @each $type, $range in $data {
-        
+
         $value: map-get($color-values, $type);
         $start: nth($range, 1);
         $end: nth($range, 2);
@@ -121,10 +145,10 @@ $feedback-types: (
         } @else {
           $color-feedback: map-merge($color-feedback, (
             $type: the-function-that-returns-nicer-value($type, $value, $range)
-          ));  
+          ));
         }
-        
-      }  
+
+      }
     }
   }
 
