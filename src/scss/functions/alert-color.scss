@@ -20,7 +20,6 @@ $feedback-types: (
   )
 );
 
-
 /*
 **
 ** Function returning an end value that will always be
@@ -73,32 +72,25 @@ $feedback-types: (
 **
 ** Translate a number on a scale to its point between two values on a different scale
 */
-@function modulateValue($val, $toRange, $type) {
-  $fromRange: (0,100);
-  @if $type == 'hue' { $fromRange: (0, 360); }
+@function modulate-value($val, $to-range, $type) {
+  $from-range: (0, 100);
+  @if $type == 'hue' { $from-range: (0, 360); }
 
-  $fromLow: nth($fromRange, 1);
-  $fromHigh: nth($fromRange, 2);
-  $toLow: nth($toRange, 1);
-  $toHigh: nth($toRange, 2);
-  $result: $toLow + ((($val - $fromLow) / ($fromHigh - $fromLow)) * ($toHigh - $toLow));
+  $from-low: nth($from-range, 1);
+  $from-high: nth($from-range, 2);
+  $to-low: nth($to-range, 1);
+  $to-high: nth($to-range, 2);
+  $result: $to-low + ((($val - $from-low) / ($from-high - $from-low)) * ($to-high - $to-low));
 
   @debug
-  '\A\A' +
-  'val:    ' + $val + '\A' +
-  'from:   ' + $fromRange + '\A' +
-  'to:     ' + $toRange + '\A' +
-  'result: ' + $result + '\A' +
-  '\A';
-  @return $result;
-}
+  '\A
+  val:      #{$val}
+  from:     #{$from-range}
+  to:       #{$to-range}
+  result:   #{$result}
+  ';
 
-/*
-**
-**  The main function that will be used by the developer
-*/
-@function the-function-that-returns-nicer-value($type, $value, $range) {
-  @return $value;
+  @return $result;
 }
 
 /*
@@ -144,7 +136,7 @@ $feedback-types: (
         // to modify the value before merging it
         } @else {
           $color-feedback: map-merge($color-feedback, (
-            $type: the-function-that-returns-nicer-value($type, $value, $range)
+            $type: modulate-value($value, $range, $type)
           ));
         }
 
