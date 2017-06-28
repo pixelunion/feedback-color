@@ -26,13 +26,13 @@ body {
 }
 
 .section--warning {
-  background-color: alert-color('warning', $color-brand);
+  background-color: alert-color($color-brand, 'warning');
 }
 
 .section--error {
-  background-color: alert-color('error', $color-brand);
+  background-color: alert-color($color-brand, 'error');
 }
 
 .section--success {
-  background-color: alert-color('success', $color-brand);
+  background-color: alert-color($color-brand, 'success');
 }
