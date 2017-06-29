@@ -4,12 +4,12 @@
 */
 $feedback-types: (
   warning: (
-    hue: (45, 55),
+    hue: (40, 55),
     sat: (75, 100),
     light: (55, 60)
   ),
   error: (
-    hue: (340, 15),
+    hue: (340, 10),
     sat: (65, 90),
     light: (50, 55)
   ),
@@ -42,11 +42,17 @@ $feedback-types: (
 */
 @function is-between($val, $start, $end) {
   @if $start < $end {
-    @if $val > $start and $val < $end { @return true; }
-    @else { @return false; }
+    @if round($val) >= $start and round($val) <= $end {
+      @return true;
+    } @else {
+      @return false;
+    }
   } @else {
-    @if $val > $start or $val < $end { @return true; }
-    @else { @return false; }
+    @if round($val) >= $start or round($val) <= $end {
+      @return true;
+    } @else {
+      @return false;
+    }
   }
 }
 
@@ -94,7 +100,6 @@ $feedback-types: (
   @each $kind, $data in $feedback-types {
     @if $kind == $feedback-type {
       @each $type, $range in $data {
-
         $value: map-get($color-values, $type);
         $start: nth($range, 1);
         $end: nth($range, 2);
@@ -115,7 +120,6 @@ $feedback-types: (
             $type: modulate-value($value, $absolute-range, $type)
           ));
         }
-
       }
     }
   }
