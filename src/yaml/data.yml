@@ -1,6 +1,5 @@
 site:
-  title: Alert Colors
-  version: 0.0.1
+  title: Feedback Color
 
 colors:
   - '#E2A936'

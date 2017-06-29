@@ -75,15 +75,13 @@ $feedback-types: (
 
 /*
 **
-** Function that will be used by the developer
+** Main function
 */
-@function alert-color($base-color, $feedback-type: 'warning') {
+@function feedback-color($base-color, $feedback-type: 'warning') {
 
   // Check we have a valid $feedback-type or throw an error
-  @if $feedback-type != 'error' and
-      $feedback-type != 'success' and
-      $feedback-type != 'warning' {
-    @error "Second argument must be 'error', 'warning', or 'success'";
+  @if not map-has-key($feedback-types, $feedback-type) {
+    @error 'Second argument must be "error", "warning", or "success"';
   }
 
   // Store the color attributes of the passed in color
@@ -106,7 +104,7 @@ $feedback-types: (
 
         // If the value falls within our desired range
         // we merge the existing value
-        @if is-between( $value, $start, $end ) {
+        @if is-between($value, $start, $end) {
           $color-feedback: map-merge($color-feedback, (
             $type: map-get($color-values, $type)
           ));

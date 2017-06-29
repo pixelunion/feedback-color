@@ -1,5 +1,5 @@
 @import 'true';
-@import '../src/scss/functions/alert-color';
+@import '../src/scss/functions/feedback-color';
 
 @include describe('feedback-types [map]') {
   $types: ('hue', 'sat', 'light');
@@ -21,18 +21,9 @@
   }
 }
 
-@include describe('alert-color [function]') {
+@include describe('feedback-color [function]') {
   @include it('Should return a valid Sass color') {
-    @include assert-equal( type-of(alert-color(red)), color );
-    @include assert-equal( type-of(alert-color(#0000ff)), color );
-  }
-}
-
-@include describe('deg-value [function]') {
-  @include it('Should return a value between 0 and 360') {
-    $numbers-to-try: (5, 50, 100, 500);
-    @each $number in $numbers-to-try {
-      @include assert-true( deg-value($number) > 0 and deg-value($number) < 360 );
-    }
+    @include assert-equal( type-of(feedback-color(red)), color );
+    @include assert-equal( type-of(feedback-color(#0000ff)), color );
   }
 }

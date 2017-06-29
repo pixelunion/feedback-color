@@ -1,16 +1,15 @@
 {
-  "name": "alert-colors",
-  "version": "0.0.1",
+  "name": "feedback-color",
+  "version": "1.0.0",
   "description": "",
-  "main": "",
+  "author": "Pixel Union",
   "repository": {
-    "url": "",
-    "type": ""
+    "url": "http://github.com/pixelunion/feedback-color"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "stylelint 'src/scss/**/*.scss'"
   },
-  "author": "",
   "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.17.3",
@@ -22,15 +21,16 @@
     "gulp-data": "^1.2.1",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-postcss": "^6.2.0",
     "gulp-pug": "^3.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.0.0",
     "gulp-yaml": "^1.0.1",
     "mocha": "^3.4.2",
     "node-sass-json-importer": "^3.0.2",
     "normalize.css": "^5.0.0",
-    "sass-true": "^3.0.0-beta.1"
-  }
+    "sass-true": "^3.0.0-beta.1",
+    "stylelint": "^7.12.0",
+    "stylelint-scss": "^1.4.4"
+  },
+  "dependencies": {}
 }

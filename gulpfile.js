@@ -6,7 +6,6 @@ var gulp = require('gulp');
 var jsonImporter = require('node-sass-json-importer');
 var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
-var postcss = require('gulp-postcss');
 var pug = require('gulp-pug');
 var sass = require('gulp-sass');
 var yaml = require('gulp-yaml');

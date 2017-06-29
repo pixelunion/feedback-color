@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "at-rule-blacklist": ["debug"],
+    "color-hex-case": "lower"
+  }
+}

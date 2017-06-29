@@ -1,7 +1,7 @@
-@import 'functions/alert-color';
+@import 'functions/feedback-color';
 @import '../../dist/data.json';
 
-$space: 10px;
+$space: 1vw;
 
 * {
   box-sizing: border-box;
@@ -13,7 +13,6 @@ body {
 
 .container {
   display: flex;
-  // flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 1vw;
@@ -45,9 +44,9 @@ $count: 0;
 @each $color in $colors {
   .section--#{$count} {
     .swatch--brand { background-color: $color; }
-    .swatch--warning { background-color: alert-color($color, 'warning'); }
-    .swatch--error { background-color: alert-color($color, 'error'); }
-    .swatch--success { background-color: alert-color($color, 'success'); }
+    .swatch--warning { background-color: feedback-color($color, 'warning'); }
+    .swatch--error { background-color: feedback-color($color, 'error'); }
+    .swatch--success { background-color: feedback-color($color, 'success'); }
   }
   $count: $count + 1;
 }
