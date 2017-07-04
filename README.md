@@ -4,7 +4,7 @@
 
 When adapting colors for a user interface, a secondary palette is often required for feedback scenarios where a specific type of message must be communicated with the user. Typically, green means success, yellow means warning, and red means error. The problem is not all feedback colors are created equal—an ideal palette is clearly an extension of the interface's primary color.
 
-**Feedback Colors** returns a *success*, *warning*, or *error* color based on a color it is given. The goal is to automate the creation of feedback colors that work harmoniously with a primary palette, while not losing efficacy in their intended scenarios.
+**Feedback Colors** returns a *success*, *warning*, or *error* color based on a color it is given. The goal is to automate the creation of feedback colors that work harmoniously with a primary palette, while effectively communicating their intended message.
 
 ## Installation
 
@@ -34,7 +34,7 @@ Feedback Colors will return a HEX value when passed a `$base-color` and `$feedba
 | Parameter | Accepts | Default |
 | --- | --- | --- |
 | `$base-color` | A color value in any CSS format | `null` |
-| `$feedback-type` | `'success'`, `'warning'`, or `'error'` | `warning` |
+| `$feedback-type` | `'success'`, `'warning'`, or `'error'` | `'warning'` |
 
 ## License
-ISC
+MIT - [Read full license](https://github.com/pixelunion/feedback-color/tree/master/LICENSE.md)
