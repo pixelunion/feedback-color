@@ -1,5 +1,5 @@
 @import 'true';
-@import '../src/scss/functions/feedback-color';
+@import '../feedback-color';
 
 @include describe('feedback-types [map]') {
   $types: ('hue', 'sat', 'light');
@@ -8,6 +8,16 @@
       @each $kind, $data in $feedback-types {
         @include assert-true( map-has-key($data, $type) );
       }
+    }
+  }
+}
+
+@include describe('absolute-range [function]') {
+  $ranges: ((40, 55), (340, 10), (75, 155), (65, 40));
+  @include it('Should return a range with an end value larger than the start') {
+    @each $group in $ranges {
+      $absolute-range: absolute-range($group);
+      @include assert-true( nth($absolute-range, 1) < nth($absolute-range, 2) );
     }
   }
 }
@@ -21,9 +31,33 @@
   }
 }
 
+@include describe('modulate-value [function]') {
+  @include it('Should translate a number on a scale to its point between two values on a different scale') {
+    @include assert-equal( modulate-value(0, (0, 100), 'sat'), 0 );
+    @include assert-equal( modulate-value(50, (0, 100), 'sat'), 50 );
+    @include assert-equal( modulate-value(100, (0, 100), 'sat'), 100 );
+  }
+}
+
 @include describe('feedback-color [function]') {
+  $random-colors: (red, green, blue, black, white, purple, salmon);
+  $types: ('warning', 'error', 'success');
+
   @include it('Should return a valid Sass color') {
-    @include assert-equal( type-of(feedback-color(red)), color );
-    @include assert-equal( type-of(feedback-color(#0000ff)), color );
+    @each $color in $random-colors {
+      @include assert-equal( type-of(feedback-color($color)), color );
+    }
+  }
+
+  @each $type in $types {
+    @include it('Should return the same #{$type} color if $base-color is a valid #{$type} color') {
+      $list: ();
+      @each $color in $random-colors {
+        $list: append($list, feedback-color($color, $type), 'comma');
+      }
+      @each $valid-color in $list {
+        @include assert-equal( inspect(feedback-color($valid-color, $type)), inspect($valid-color) );
+      }
+    }
   }
 }

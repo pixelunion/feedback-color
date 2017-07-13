@@ -1,7 +1,7 @@
 {
   "name": "feedback-color",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sass function that returns a feedback color (warning, error, or success) based on a color it's given.",
   "author": "Pixel Union",
   "repository": {
     "url": "http://github.com/pixelunion/feedback-color"

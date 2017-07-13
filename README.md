@@ -10,19 +10,22 @@ When adapting colors for a user interface, a secondary palette is often required
 
 ##### Using npm
 ```bash
-npm install --save feedback-colors
+npm install --save-dev feedback-color
 ```
 
 ##### Old-school method
 Download `feedback-color.scss` from the [/src/scss/functions](https://github.com/pixelunion/feedback-color/tree/master/src/scss/functions) directory.
 
 ## Usage
-Import the `feedback-colors` function in your sass.
+Import the `feedback-color` function in your sass.
 ```scss
-@import 'functions/feedback-colors';
+@import 'feedback-color';
+
+// Or something like this if you installed with npm
+@import '../node_modules/feedback-color/feedback-color';
 ```
 
-The `feedback-color` function will return a HEX when you pass it a start color and the feedback color type.
+The `feedback-color` function will return a HEX when you pass it a base color and the feedback color type.
 ```scss
 div {
   background-color: feedback-color(#bada55, 'success');
